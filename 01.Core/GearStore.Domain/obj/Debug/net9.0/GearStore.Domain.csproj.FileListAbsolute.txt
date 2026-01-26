@@ -1,0 +1,11 @@
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\bin\Debug\net9.0\GearStore.Domain.deps.json
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\bin\Debug\net9.0\GearStore.Domain.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\bin\Debug\net9.0\GearStore.Domain.pdb
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.AssemblyInfoInputs.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.AssemblyInfo.cs
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.csproj.CoreCompileInputs.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\refint\GearStore.Domain.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.pdb
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\ref\GearStore.Domain.dll

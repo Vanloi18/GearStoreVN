@@ -1,0 +1,17 @@
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\bin\Debug\net9.0\GearStore.Infrastructure.deps.json
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\bin\Debug\net9.0\GearStore.Infrastructure.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\bin\Debug\net9.0\GearStore.Infrastructure.pdb
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\bin\Debug\net9.0\GearStore.Application.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\bin\Debug\net9.0\GearStore.Domain.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\bin\Debug\net9.0\GearStore.Application.pdb
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\bin\Debug\net9.0\GearStore.Domain.pdb
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\GearStore.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\GearStore.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\GearStore.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\GearStore.Infrastructure.AssemblyInfo.cs
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\GearStore.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\GearStor.DC1CB6E4.Up2Date
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\GearStore.Infrastructure.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\refint\GearStore.Infrastructure.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\GearStore.Infrastructure.pdb
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\obj\Debug\net9.0\ref\GearStore.Infrastructure.dll

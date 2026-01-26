@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "GearStore.Infrastructure/1.0.0": {
+        "dependencies": {
+          "GearStore.Application": "1.0.0",
+          "GearStore.Domain": "1.0.0"
+        },
+        "runtime": {
+          "GearStore.Infrastructure.dll": {}
+        }
+      },
+      "GearStore.Application/1.0.0": {
+        "dependencies": {
+          "GearStore.Domain": "1.0.0"
+        },
+        "runtime": {
+          "GearStore.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "GearStore.Domain/1.0.0": {
+        "runtime": {
+          "GearStore.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GearStore.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GearStore.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GearStore.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

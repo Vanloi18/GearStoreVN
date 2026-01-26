@@ -1,0 +1,15 @@
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\bin\Debug\net9.0\GearStore.Application.deps.json
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\bin\Debug\net9.0\GearStore.Application.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\bin\Debug\net9.0\GearStore.Application.pdb
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\bin\Debug\net9.0\GearStore.Domain.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\bin\Debug\net9.0\GearStore.Domain.pdb
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.csproj.AssemblyReference.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.AssemblyInfoInputs.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.AssemblyInfo.cs
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.csproj.CoreCompileInputs.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStor.D512E432.Up2Date
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\refint\GearStore.Application.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.pdb
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\ref\GearStore.Application.dll
