@@ -16,6 +16,7 @@ public class SavedConfiguration : AuditableEntity
     public int? EstimatedWattage { get; set; }  // Tổng công suất ước tính (W)
     public string? Notes { get; set; }
     public bool IsPublic { get; set; } = false; // Cho phép người khác xem
+    public decimal TotalEstimatedPrice { get; set; }
 
     // Navigation property
     public virtual ICollection<ConfigurationItem> Items { get; set; } = new List<ConfigurationItem>();

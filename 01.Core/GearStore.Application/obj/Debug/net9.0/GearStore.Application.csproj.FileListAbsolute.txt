@@ -8,6 +8,7 @@ C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debu
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.AssemblyInfoInputs.cache
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.AssemblyInfo.cs
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.csproj.CoreCompileInputs.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.sourcelink.json
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStor.D512E432.Up2Date
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\GearStore.Application.dll
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\obj\Debug\net9.0\refint\GearStore.Application.dll

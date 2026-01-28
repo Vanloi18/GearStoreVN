@@ -26,7 +26,7 @@ public class OrderStatusHistoryConfiguration : IEntityTypeConfiguration<OrderSta
             .HasMaxLength(500);
 
         builder.Property(h => h.ChangedAt)
-            .HasDefaultValueSql("GETUTCDATE()");
+            .IsRequired();
 
         // Relationships
         builder.HasOne(h => h.Order)

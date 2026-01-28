@@ -1,49 +1,66 @@
+using GearStore.Application.Interfaces;
+using GearStore.Application.Interfaces.Services;
+using GearStore.Application.Services;
 using GearStore.Infrastructure.Data;
-using Microsoft.AspNetCore.Identity;
+using GearStore.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GearStore.Infrastructure;
 
 /// <summary>
-/// Extension methods để đăng ký Infrastructure services
+/// Dependency Injection configuration for Infrastructure layer
+/// Registers DbContext, Repositories, UnitOfWork, and Application Services
 /// </summary>
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(
+    public static IServiceCollection AddInfrastructureServices(
         this IServiceCollection services, 
-        IConfiguration configuration)
+        string connectionString)
     {
-        // Đăng ký DbContext
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(
-                configuration.GetConnectionString("DefaultConnection"),
-                b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
-            )
-        );
+        // ========================================
+        // 1. DbContext Registration
+        // ========================================
+        var serverVersion = ServerVersion.AutoDetect(connectionString);
+        services.AddDbContext<GearStoreDbContext>(options =>
+            options.UseMySql(connectionString, serverVersion));
 
-        // Đăng ký Identity
-        services.AddIdentity<IdentityUser, IdentityRole>(options =>
-        {
-            // Password settings
-            options.Password.RequireDigit = true;
-            options.Password.RequiredLength = 6;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequireLowercase = false;
+        // ========================================
+        // 2. Repository Registration (Scoped)
+        // ========================================
+        // Each repository is scoped to the HTTP request lifetime
+        // Ensures one DbContext instance per request
+        
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IBrandRepository, BrandRepository>();
+        services.AddScoped<ICartRepository, CartRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
 
-            // User settings
-            options.User.RequireUniqueEmail = true;
+        // ========================================
+        // 3. UnitOfWork Registration (Scoped)
+        // ========================================
+        // UnitOfWork coordinates all repositories and manages transactions
+        // Scoped lifetime ensures one UnitOfWork per request
+        
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            // SignIn settings
-            options.SignIn.RequireConfirmedEmail = false;
-        })
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
-
-        // Đăng ký Repositories sẽ thêm sau
-        // services.AddScoped<IProductRepository, ProductRepository>();
+        // ========================================
+        // 4. Application Services Registration (Scoped)
+        // ========================================
+        // Business logic services that orchestrate domain operations
+        // Scoped lifetime ensures services share the same UnitOfWork per request
+        
+        services.AddScoped<ICartService, CartService>();
+        
+        // Services implemented in Infrastructure (using DbContext directly)
+        services.AddScoped<IOrderService, GearStore.Infrastructure.Services.OrderService>();
+        services.AddScoped<IProductService, GearStore.Infrastructure.Services.ProductService>();
+        services.AddScoped<ICategoryService, GearStore.Infrastructure.Services.CategoryService>();
+        services.AddScoped<IBrandService, GearStore.Infrastructure.Services.BrandService>();
+        services.AddScoped<IAdminService, GearStore.Infrastructure.Services.AdminService>();
+        services.AddScoped<IAuthService, GearStore.Infrastructure.Services.AuthService>();
+        services.AddScoped<IUserService, GearStore.Infrastructure.Services.UserService>();
 
         return services;
     }

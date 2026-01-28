@@ -2,51 +2,10 @@ using GearStore.Domain.Common;
 
 namespace GearStore.Domain.Entities;
 
-/// <summary>
-/// Chatbot Response - Rule-based
-/// Lưu các câu trả lời dựa trên keywords
-/// </summary>
-public class ChatbotResponse : AuditableEntity
+public class ChatbotResponse : BaseEntity
 {
-    /// <summary>
-    /// Từ khóa để match (phân tách bằng dấu phẩy)
-    /// VD: "bảo hành,warranty,bh"
-    /// </summary>
     public string Keywords { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Nội dung trả lời
-    /// </summary>
-    public string ResponseText { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Phân loại câu hỏi (Shipping, Warranty, Payment, BuildPC...)
-    /// </summary>
-    public string? Category { get; set; }
-
-    /// <summary>
-    /// Độ ưu tiên khi match nhiều rule (số càng cao càng ưu tiên)
-    /// </summary>
+    public string Answer { get; set; } = string.Empty;
+    public string MatchType { get; set; } = "Contains";
     public int Priority { get; set; } = 0;
-
-    public bool IsActive { get; set; } = true;
-
-    // Helper method
-    public List<string> GetKeywordList()
-    {
-        return Keywords
-            .Split(',', StringSplitOptions.RemoveEmptyEntries)
-            .Select(k => k.Trim().ToLower())
-            .ToList();
-    }
-
-    public bool MatchesKeyword(string userInput)
-    {
-        if (string.IsNullOrWhiteSpace(userInput)) return false;
-
-        var inputLower = userInput.ToLower();
-        var keywords = GetKeywordList();
-
-        return keywords.Any(keyword => inputLower.Contains(keyword));
-    }
 }

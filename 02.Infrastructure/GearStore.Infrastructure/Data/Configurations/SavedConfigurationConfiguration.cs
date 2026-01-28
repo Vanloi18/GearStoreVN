@@ -25,8 +25,11 @@ public class SavedConfigurationConfiguration : IEntityTypeConfiguration<SavedCon
         builder.Property(c => c.Notes)
             .HasMaxLength(1000);
 
+        builder.Property(c => c.TotalEstimatedPrice)
+            .HasColumnType("decimal(18,2)");
+
         builder.Property(c => c.CreatedAt)
-            .HasDefaultValueSql("GETUTCDATE()");
+            .IsRequired();
 
         // Relationships
         builder.HasMany(c => c.Items)

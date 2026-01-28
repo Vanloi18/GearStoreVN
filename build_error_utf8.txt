@@ -1,0 +1,17 @@
+﻿  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GearStore.Domain -> C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\bin\Debug\net9.0\GearStore.Domain.dll
+  GearStore.Application -> C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Application\bin\Debug\net9.0\GearStore.Application.dll
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\Services\AdminService.cs(95,33): error CS1061: 'Order' does not contain a definition for 'TotalAmount' and no accessible extension method 'TotalAmount' accepting a first argument of type 'Order' could be found (are you missing a using directive or an assembly reference?) [C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\GearStore.Infrastructure.csproj]
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\Services\AdminService.cs(93,26): warning CS8601: Possible null reference assignment. [C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\GearStore.Infrastructure.csproj]
+
+Build FAILED.
+
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\Services\AdminService.cs(93,26): warning CS8601: Possible null reference assignment. [C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\GearStore.Infrastructure.csproj]
+C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\Services\AdminService.cs(95,33): error CS1061: 'Order' does not contain a definition for 'TotalAmount' and no accessible extension method 'TotalAmount' accepting a first argument of type 'Order' could be found (are you missing a using directive or an assembly reference?) [C:\Users\levan\OneDrive\Desktop\GearStore\02.Infrastructure\GearStore.Infrastructure\GearStore.Infrastructure.csproj]
+    1 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:03.62
+
+Workload updates are available. Run `dotnet workload list` for more information.

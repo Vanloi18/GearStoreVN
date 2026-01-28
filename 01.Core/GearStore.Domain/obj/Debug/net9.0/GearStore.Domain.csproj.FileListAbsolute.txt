@@ -5,6 +5,7 @@ C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.AssemblyInfoInputs.cache
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.AssemblyInfo.cs
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.csproj.CoreCompileInputs.cache
+C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.sourcelink.json
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.dll
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\refint\GearStore.Domain.dll
 C:\Users\levan\OneDrive\Desktop\GearStore\01.Core\GearStore.Domain\obj\Debug\net9.0\GearStore.Domain.pdb

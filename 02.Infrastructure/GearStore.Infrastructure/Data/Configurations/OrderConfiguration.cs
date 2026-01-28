@@ -5,23 +5,31 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GearStore.Infrastructure.Data.Configurations;
 
-// =====================================================
-// ORDER CONFIGURATION
-// =====================================================
+/// <summary>
+/// EF Core configuration for Order aggregate root
+/// </summary>
 public class OrderConfiguration : IEntityTypeConfiguration<Order>
 {
     public void Configure(EntityTypeBuilder<Order> builder)
     {
+        // Table name
         builder.ToTable("Orders");
 
+        // Primary key
         builder.HasKey(o => o.Id);
 
+        // Properties
         builder.Property(o => o.OrderNumber)
             .IsRequired()
             .HasMaxLength(50);
 
         builder.HasIndex(o => o.OrderNumber)
             .IsUnique();
+
+        builder.Property(o => o.UserId)
+            .HasMaxLength(450); // ASP.NET Identity user ID length
+
+        builder.HasIndex(o => o.UserId);
 
         builder.Property(o => o.CustomerName)
             .IsRequired()
@@ -38,9 +46,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .IsRequired()
             .HasMaxLength(500);
 
-        builder.Property(o => o.SubTotal)
-            .HasColumnType("decimal(18,2)");
-
         builder.Property(o => o.ShippingFee)
             .HasColumnType("decimal(18,2)")
             .HasDefaultValue(0);
@@ -48,9 +53,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(o => o.Discount)
             .HasColumnType("decimal(18,2)")
             .HasDefaultValue(0);
-
-        builder.Property(o => o.TotalAmount)
-            .HasColumnType("decimal(18,2)");
 
         // Enum conversion
         builder.Property(o => o.Status)
@@ -69,12 +71,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(o => o.Notes)
             .HasMaxLength(1000);
 
-        builder.Property(o => o.AdminNotes)
-            .HasMaxLength(1000);
-
-        builder.Property(o => o.CreatedAt)
-            .HasDefaultValueSql("GETUTCDATE()");
-
         // Indexes
         builder.HasIndex(o => o.Status);
         builder.HasIndex(o => o.CreatedAt);
@@ -85,9 +81,23 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .HasForeignKey(i => i.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        builder.Navigation(o => o.OrderItems)
+            .HasField("_items")
+            .UsePropertyAccessMode(PropertyAccessMode.Field);
+
         builder.HasMany(o => o.StatusHistories)
             .WithOne(h => h.Order)
             .HasForeignKey(h => h.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Navigation(o => o.StatusHistories)
+            .HasField("_statusHistories")
+            .UsePropertyAccessMode(PropertyAccessMode.Field);
+
+        // Audit fields
+        builder.Property(o => o.CreatedAt)
+            .IsRequired();
+
+        builder.Property(o => o.UpdatedAt);
     }
 }

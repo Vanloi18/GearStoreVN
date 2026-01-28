@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<GearStore.Domain.Entities.Category>
+
+@{
+    ViewData["Title"] = "Trang chủ";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center py-5 bg-light">
+    <h1 class="display-4 fw-bold">🔥 GearStore Chào Bạn!</h1>
+    <p class="lead">Build PC cực chất - Giá cực tốt.</p>
+</div>
+
+<div class="container mt-5">
+    <h3 class="mb-4 text-primary"><i class="fa-solid fa-layer-group"></i> Danh mục linh kiện</h3>
+    
+    <div class="row">
+        @if(Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body text-center">
+                            <div class="fs-1 text-info mb-3">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">@item.Name</h5>
+                            <p class="card-text text-muted small">@item.Description</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">Xem sản phẩm</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
 </div>

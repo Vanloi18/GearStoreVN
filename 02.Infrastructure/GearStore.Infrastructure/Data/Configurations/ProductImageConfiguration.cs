@@ -24,7 +24,7 @@ public class ProductImageConfiguration : IEntityTypeConfiguration<ProductImage>
             .HasMaxLength(200);
 
         builder.Property(i => i.CreatedAt)
-            .HasDefaultValueSql("GETUTCDATE()");
+            .IsRequired();
 
         // Relationships
         builder.HasOne(i => i.Product)

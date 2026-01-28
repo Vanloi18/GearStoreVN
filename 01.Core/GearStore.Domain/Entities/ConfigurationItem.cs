@@ -12,6 +12,7 @@ public class ConfigurationItem : BaseEntity
     public int CategoryId { get; set; }  // Để biết linh kiện thuộc loại gì
     public int Quantity { get; set; } = 1;
     public decimal Price { get; set; }   // Lưu giá tại thời điểm thêm
+    public int SavedConfigurationId { get; set; }
 
     // Navigation properties
     public virtual SavedConfiguration Configuration { get; set; } = null!;

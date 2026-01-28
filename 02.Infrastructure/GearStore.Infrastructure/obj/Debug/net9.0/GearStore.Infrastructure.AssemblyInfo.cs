@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GearStore.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c49cb0446b2b99cdc1bfdcc33a862ba73f958a99")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c91ef4fb63d2993a919352452598b0dbeb2bd48c")]
 [assembly: System.Reflection.AssemblyProductAttribute("GearStore.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GearStore.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

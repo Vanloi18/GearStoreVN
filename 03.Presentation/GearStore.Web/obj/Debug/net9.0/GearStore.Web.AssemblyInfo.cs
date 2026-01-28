@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GearStore.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c91ef4fb63d2993a919352452598b0dbeb2bd48c")]
 [assembly: System.Reflection.AssemblyProductAttribute("GearStore.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GearStore.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

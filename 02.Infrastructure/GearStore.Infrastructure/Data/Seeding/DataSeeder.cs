@@ -1,182 +1,182 @@
 using GearStore.Domain.Entities;
+using GearStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace GearStore.Infrastructure.Data.Seeding;
 
-/// <summary>
-/// Class để seed dữ liệu mẫu vào database
-/// </summary>
 public static class DataSeeder
 {
-    public static async Task SeedAsync(ApplicationDbContext context)
+    public static async Task SeedAsync(GearStoreDbContext context) 
     {
-        // Đảm bảo database đã được tạo
-        await context.Database.EnsureCreatedAsync();
-
-        // Seed Categories
         await SeedCategoriesAsync(context);
-
-        // Seed Chatbot Responses
+        await SeedBrandsAsync(context);
+        await SeedProductsAsync(context);
         await SeedChatbotResponsesAsync(context);
-
-        // Seed Sample Products (một vài sản phẩm mẫu để test)
-        await SeedSampleProductsAsync(context);
-
-        await context.SaveChangesAsync();
     }
 
-    private static async Task SeedCategoriesAsync(ApplicationDbContext context)
+    private static async Task SeedCategoriesAsync(GearStoreDbContext context)
     {
-        if (await context.Categories.AnyAsync())
-            return; // Đã có dữ liệu
-
-        var categories = new List<Category>
+        if (!await context.Categories.AnyAsync())
         {
-            new() { Name = "CPU - Bộ vi xử lý", Slug = "cpu", Description = "Intel Core, AMD Ryzen", Icon = "fa-microchip", DisplayOrder = 1, IsActive = true },
-            new() { Name = "Mainboard - Bo mạch chủ", Slug = "mainboard", Description = "ASUS, MSI, Gigabyte", Icon = "fa-server", DisplayOrder = 2, IsActive = true },
-            new() { Name = "RAM - Bộ nhớ trong", Slug = "ram", Description = "DDR4, DDR5", Icon = "fa-memory", DisplayOrder = 3, IsActive = true },
-            new() { Name = "VGA - Card màn hình", Slug = "vga", Description = "NVIDIA, AMD", Icon = "fa-display", DisplayOrder = 4, IsActive = true },
-            new() { Name = "PSU - Nguồn máy tính", Slug = "psu", Description = "Corsair, Cooler Master", Icon = "fa-bolt", DisplayOrder = 5, IsActive = true },
-            new() { Name = "Case - Vỏ máy tính", Slug = "case", Description = "ATX, mATX, Mini-ITX", Icon = "fa-cube", DisplayOrder = 6, IsActive = true },
-            new() { Name = "Storage - Ổ cứng", Slug = "storage", Description = "SSD, HDD", Icon = "fa-hard-drive", DisplayOrder = 7, IsActive = true },
-            new() { Name = "Cooling - Tản nhiệt", Slug = "cooling", Description = "Air, AIO, Custom Loop", Icon = "fa-fan", DisplayOrder = 8, IsActive = true }
-        };
-
-        await context.Categories.AddRangeAsync(categories);
-    }
-
-    private static async Task SeedChatbotResponsesAsync(ApplicationDbContext context)
-    {
-        if (await context.ChatbotResponses.AnyAsync())
-            return;
-
-        var responses = new List<ChatbotResponse>
-        {
-            new()
+            var categories = new List<Category>
             {
-                Keywords = "bảo hành,warranty,bh",
-                ResponseText = "Sản phẩm chính hãng tại GearStore được bảo hành từ 12-36 tháng tùy theo loại linh kiện. CPU/RAM thường 36 tháng, VGA 24-36 tháng.",
-                Category = "Warranty",
-                Priority = 10,
-                IsActive = true
-            },
-            new()
+                new Category("CPU", "cpu", 1),
+                new Category("Mainboard", "mainboard", 2),
+                new Category("RAM", "ram", 3),
+                new Category("VGA", "vga", 4),
+                new Category("PSU", "psu", 5),
+                new Category("Case", "case", 6),
+                new Category("Storage", "storage", 7)
+            };
+            
+            // Add descriptions and icons
+            foreach (var cat in categories)
             {
-                Keywords = "ship,giao hàng,vận chuyển,delivery",
-                ResponseText = "GearStore hỗ trợ giao hàng COD toàn quốc. Phí ship: 30.000đ nội thành, 50.000đ ngoại thành. FREESHIP cho đơn hàng từ 1 triệu.",
-                Category = "Shipping",
-                Priority = 10,
-                IsActive = true
-            },
-            new()
-            {
-                Keywords = "thanh toán,payment,pay",
-                ResponseText = "Chúng tôi hỗ trợ 2 hình thức thanh toán: COD (tiền mặt khi nhận hàng) và Chuyển khoản ngân hàng.",
-                Category = "Payment",
-                Priority = 10,
-                IsActive = true
-            },
-            new()
-            {
-                Keywords = "build pc,xây dựng cấu hình,chọn linh kiện,pc builder",
-                ResponseText = "Bạn có thể sử dụng công cụ PC Builder của chúng tôi! Hệ thống sẽ tự động kiểm tra tương thích giữa các linh kiện và gợi ý nguồn phù hợp.",
-                Category = "BuildPC",
-                Priority = 15,
-                IsActive = true
-            },
-            new()
-            {
-                Keywords = "giờ mở cửa,làm việc,working hours",
-                ResponseText = "GearStore làm việc từ 8:00 - 21:00 hàng ngày, kể cả cuối tuần và lễ tết.",
-                Category = "General",
-                Priority = 5,
-                IsActive = true
-            },
-            new()
-            {
-                Keywords = "liên hệ,hotline,phone,số điện thoại",
-                ResponseText = "Bạn có thể liên hệ với chúng tôi qua Hotline: 1900-xxxx hoặc Email: support@gearstore.vn",
-                Category = "Contact",
-                Priority = 8,
-                IsActive = true
+                if (cat.Name == "CPU")
+                {
+                    cat.UpdateInfo(cat.Name, cat.Slug, "Vi xử lý trung tâm, bộ não của máy tính");
+                    cat.SetIcon("bi-cpu");
+                }
+                else if (cat.Name == "Mainboard")
+                {
+                    cat.UpdateInfo(cat.Name, cat.Slug, "Bo mạch chủ, kết nối các linh kiện");
+                    cat.SetIcon("bi-motherboard");
+                }
+                else if (cat.Name == "RAM")
+                {
+                    cat.UpdateInfo(cat.Name, cat.Slug, "Bộ nhớ trong, xử lý đa nhiệm");
+                    cat.SetIcon("bi-memory");
+                }
+                else if (cat.Name == "VGA")
+                {
+                    cat.UpdateInfo(cat.Name, cat.Slug, "Card đồ họa, xử lý hình ảnh");
+                    cat.SetIcon("bi-gpu-card");
+                }
             }
-        };
 
-        await context.ChatbotResponses.AddRangeAsync(responses);
+            await context.Categories.AddRangeAsync(categories);
+            await context.SaveChangesAsync();
+        }
     }
 
-    private static async Task SeedSampleProductsAsync(ApplicationDbContext context)
+    private static async Task SeedBrandsAsync(GearStoreDbContext context)
     {
-        if (await context.Products.AnyAsync())
-            return;
-
-        // Lấy CategoryId
-        var cpuCategory = await context.Categories.FirstAsync(c => c.Slug == "cpu");
-        var mainCategory = await context.Categories.FirstAsync(c => c.Slug == "mainboard");
-
-        // Sample CPU
-        var cpu = new Product
+        if (!await context.Brands.AnyAsync())
         {
-            CategoryId = cpuCategory.Id,
-            Name = "Intel Core i5-13600K",
-            Slug = "intel-core-i5-13600k",
-            SKU = "CPU-I5-13600K",
-            Brand = "Intel",
-            Price = 5500000,
-            OriginalPrice = 6000000,
-            Stock = 50,
-            Description = "CPU Intel thế hệ 13, 14 nhân 20 luồng, xung nhịp tối đa 5.1GHz",
-            ShortDescription = "14 nhân 20 luồng, Socket LGA1700",
-            ThumbnailImage = "/images/products/i5-13600k.jpg",
-            IsActive = true,
-            IsFeatured = true
-        };
+            var brands = new List<Brand>
+            {
+                new Brand("Intel", "intel"),
+                new Brand("AMD", "amd"),
+                new Brand("ASUS", "asus"),
+                new Brand("MSI", "msi"),
+                new Brand("Gigabyte", "gigabyte"),
+                new Brand("Corsair", "corsair"),
+                new Brand("Kingston", "kingston"),
+                new Brand("Samsung", "samsung"),
+                new Brand("NVIDIA", "nvidia")
+            };
 
-        await context.Products.AddAsync(cpu);
-        await context.SaveChangesAsync(); // Save để có Id
+            foreach (var brand in brands)
+            {
+                brand.SetLogo($"/images/brands/{brand.Slug}.png");
+                if (brand.Name == "Intel" || brand.Name == "AMD" || brand.Name == "NVIDIA")
+                {
+                    brand.MarkAsFeatured();
+                }
+            }
 
-        // Specs cho CPU
-        var cpuSpecs = new List<ProductSpec>
+            await context.Brands.AddRangeAsync(brands);
+            await context.SaveChangesAsync();
+        }
+    }
+
+    private static async Task SeedProductsAsync(GearStoreDbContext context)
+    {
+        if (!await context.Products.AnyAsync())
         {
-            new() { ProductId = cpu.Id, SpecKey = "Socket", SpecValue = "LGA1700", DisplayName = "Socket", DisplayOrder = 1 },
-            new() { ProductId = cpu.Id, SpecKey = "SupportedRAM", SpecValue = "DDR5,DDR4", DisplayName = "Hỗ trợ RAM", DisplayOrder = 2 },
-            new() { ProductId = cpu.Id, SpecKey = "TDP", SpecValue = "125", DisplayName = "TDP (W)", DisplayOrder = 3 },
-            new() { ProductId = cpu.Id, SpecKey = "Cores", SpecValue = "14", DisplayName = "Số nhân", DisplayOrder = 4 },
-            new() { ProductId = cpu.Id, SpecKey = "Threads", SpecValue = "20", DisplayName = "Số luồng", DisplayOrder = 5 }
-        };
+            // Get IDs for linking
+            var categories = await context.Categories.ToListAsync();
+            var brands = await context.Brands.ToListAsync();
 
-        await context.ProductSpecs.AddRangeAsync(cpuSpecs);
+            var cpuCat = categories.First(c => c.Slug == "cpu");
+            var vgaCat = categories.First(c => c.Slug == "vga");
+            var ramCat = categories.First(c => c.Slug == "ram");
+            var mbCat = categories.First(c => c.Slug == "mainboard");
 
-        // Sample Mainboard
-        var mainboard = new Product
+            var intel = brands.First(b => b.Slug == "intel");
+            var amd = brands.First(b => b.Slug == "amd");
+            var nvidia = brands.First(b => b.Slug == "nvidia");
+            var asus = brands.First(b => b.Slug == "asus");
+            var corsair = brands.First(b => b.Slug == "corsair");
+
+            var products = new List<Product>();
+
+            // CPUs
+            var p1 = new Product("Intel Core i9-14900K", "intel-core-i9-14900k", cpuCat.Id, intel.Id, 14990000);
+            p1.UpdateBasicInfo(p1.Name, p1.Slug, "CPU-INTEL-14900K", "Vi xử lý Intel Core i9 thế hệ 14 mạnh mẽ nhất", "24 nhân 32 luồng, xung nhịp lên tới 6.0GHz");
+            p1.UpdateStock(50);
+            p1.SetThumbnail("/images/products/i9-14900k.jpg");
+            p1.MarkAsFeatured();
+            products.Add(p1);
+
+            var p2 = new Product("AMD Ryzen 9 7950X", "amd-ryzen-9-7950x", cpuCat.Id, amd.Id, 13590000);
+            p2.UpdateBasicInfo(p2.Name, p2.Slug, "CPU-AMD-7950X", "Vi xử lý AMD Ryzen 7000 series đỉnh cao", "16 nhân 32 luồng, kiến trúc Zen 4");
+            p2.UpdatePricing(13590000, 15990000); // Has discount
+            p2.UpdateStock(30);
+            p2.SetThumbnail("/images/products/ryzen-7950x.jpg");
+            p2.MarkAsFeatured();
+            products.Add(p2);
+
+            // VGAs
+            var p3 = new Product("ASUS ROG Strix GeForce RTX 4090", "asus-rog-strix-rtx-4090", vgaCat.Id, asus.Id, 50990000);
+            p3.UpdateBasicInfo(p3.Name, p3.Slug, "VGA-ASUS-4090", "Card đồ họa mạnh nhất thế giới hiện nay", "24GB GDDR6X, DLSS 3, Ray Tracing");
+            p3.UpdateStock(10);
+            p3.SetThumbnail("/images/products/rog-4090.jpg");
+            p3.MarkAsFeatured();
+            products.Add(p3);
+
+            // RAM
+            var p4 = new Product("Corsair Vengeance RGB 32GB (2x16GB) DDR5 6000MHz", "corsair-vengeance-rgb-32gb-ddr5", ramCat.Id, corsair.Id, 3290000);
+            p4.UpdateBasicInfo(p4.Name, p4.Slug, "RAM-CORSAIR-DDR5", "RAM DDR5 tốc độ cao với LED RGB", "Bus 6000MHz, CL36, XMP 3.0");
+            p4.UpdateStock(100);
+            p4.SetThumbnail("/images/products/corsair-ddr5.jpg");
+            products.Add(p4);
+
+            await context.Products.AddRangeAsync(products);
+            await context.SaveChangesAsync();
+        }
+    }
+
+    private static async Task SeedChatbotResponsesAsync(GearStoreDbContext context)
+    {
+        if (!await context.ChatbotResponses.AnyAsync())
         {
-            CategoryId = mainCategory.Id,
-            Name = "ASUS ROG STRIX B760-F GAMING WIFI",
-            Slug = "asus-rog-strix-b760-f-gaming-wifi",
-            SKU = "MAIN-ASUS-B760F",
-            Brand = "ASUS",
-            Price = 4200000,
-            OriginalPrice = 4800000,
-            Stock = 30,
-            Description = "Mainboard ASUS B760, hỗ trợ Intel Gen 12/13, DDR5, Wi-Fi 6E",
-            ShortDescription = "Socket LGA1700, DDR5, ATX",
-            ThumbnailImage = "/images/products/asus-b760f.jpg",
-            IsActive = true,
-            IsFeatured = true
-        };
-
-        await context.Products.AddAsync(mainboard);
-        await context.SaveChangesAsync();
-
-        // Specs cho Mainboard
-        var mainSpecs = new List<ProductSpec>
-        {
-            new() { ProductId = mainboard.Id, SpecKey = "Socket", SpecValue = "LGA1700", DisplayName = "Socket", DisplayOrder = 1 },
-            new() { ProductId = mainboard.Id, SpecKey = "SupportedRAM", SpecValue = "DDR5", DisplayName = "Loại RAM", DisplayOrder = 2 },
-            new() { ProductId = mainboard.Id, SpecKey = "FormFactor", SpecValue = "ATX", DisplayName = "Form Factor", DisplayOrder = 3 },
-            new() { ProductId = mainboard.Id, SpecKey = "Chipset", SpecValue = "B760", DisplayName = "Chipset", DisplayOrder = 4 }
-        };
-
-        await context.ProductSpecs.AddRangeAsync(mainSpecs);
+            var responses = new List<ChatbotResponse>
+            {
+                new ChatbotResponse 
+                { 
+                    Keywords = "bảo hành", 
+                    Answer = "Sản phẩm chính hãng bảo hành từ 12-36 tháng tùy loại ạ.", 
+                    MatchType = "Contains",
+                    Priority = 1 
+                },
+                new ChatbotResponse 
+                { 
+                    Keywords = "địa chỉ", 
+                    Answer = "Shop ở Hà Nội, ship COD toàn quốc bạn nhé.", 
+                    MatchType = "Contains",
+                    Priority = 1 
+                },
+                new ChatbotResponse 
+                { 
+                    Keywords = "thanh toán", 
+                    Answer = "Bên mình hỗ trợ thanh toán tiền mặt (COD) hoặc chuyển khoản.", 
+                    MatchType = "Contains",
+                    Priority = 1 
+                }
+            };
+            await context.ChatbotResponses.AddRangeAsync(responses);
+            await context.SaveChangesAsync();
+        }
     }
 }

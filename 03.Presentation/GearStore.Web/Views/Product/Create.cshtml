@@ -1,0 +1,116 @@
+@model GearStore.Web.Models.CreateProductViewModel
+
+@{ ViewData["Title"] = "Thêm sản phẩm mới"; }
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">➕ Thêm sản phẩm mới</h4>
+        </div>
+        <div class="card-body bg-light">
+            <form asp-action="Create" enctype="multipart/form-data" method="post">
+                
+                <h5 class="text-primary border-bottom pb-2 mb-3">1. Thông tin cơ bản</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Name" class="form-label fw-bold"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Ví dụ: PC Gaming GVN..." />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CategoryId" class="form-label fw-bold"></label>
+                        <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+                            <option value="">-- Chọn danh mục --</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Price" class="form-label fw-bold"></label>
+                        <div class="input-group">
+                            <input asp-for="Price" class="form-control" type="number" placeholder="Nhập 24990000 (Không dùng dấu chấm)" />
+                            <span class="input-group-text">VNĐ</span>
+                        </div>
+                        <small class="text-muted">Lưu ý: Nhập số liền (VD: 24990000), không nhập dấu chấm/phẩy.</small>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ImageFile" class="form-label fw-bold"></label>
+                        <input asp-for="ImageFile" class="form-control" type="file" accept="image/*" onchange="previewImage(event)" />
+                        <div class="mt-2" id="imagePreviewContainer" style="display:none;">
+                            <img id="imagePreview" src="#" class="img-thumbnail" style="height: 100px;" />
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label asp-for="Description" class="form-label fw-bold"></label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Mô tả chi tiết sản phẩm..."></textarea>
+                    </div>
+                </div>
+
+                <h5 class="text-primary border-bottom pb-2 mb-3 mt-4">
+                    2. Thông số kỹ thuật 
+                    <button type="button" class="btn btn-sm btn-outline-primary float-end" onclick="addSpecRow()">
+                        <i class="fa-solid fa-plus"></i> Thêm thông số
+                    </button>
+                </h5>
+                
+                <table class="table table-bordered bg-white" id="specsTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Tên thông số (VD: CPU, RAM)</th>
+                            <th>Giá trị (VD: Core i9, 32GB)</th>
+                            <th style="width: 50px;">Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="specsContainer">
+                        <tr>
+                            <td><input name="Specs[0].Name" class="form-control" placeholder="Tên thông số" /></td>
+                            <td><input name="Specs[0].Value" class="form-control" placeholder="Giá trị" /></td>
+                            <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="mt-4 text-end">
+                    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+                    <button type="submit" class="btn btn-success px-5">Lưu sản phẩm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Preview ảnh
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                document.getElementById('imagePreviewContainer').style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // Logic thêm dòng thông số
+        let specIndex = 1;
+        function addSpecRow() {
+            const container = document.getElementById('specsContainer');
+            const row = `
+                <tr>
+                    <td><input name="Specs[${specIndex}].Name" class="form-control" placeholder="Tên thông số" /></td>
+                    <td><input name="Specs[${specIndex}].Value" class="form-control" placeholder="Giá trị" /></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button></td>
+                </tr>`;
+            container.insertAdjacentHTML('beforeend', row);
+            specIndex++;
+        }
+
+        function removeRow(btn) {
+            btn.closest('tr').remove();
+        }
+    </script>
+}
